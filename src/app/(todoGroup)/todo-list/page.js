@@ -6,14 +6,7 @@ import WorkspacePopupComponent from "@/components/WorkspacePopupComponent";
 const TodolistPage = () => {
     return ( 
         <main className="flex w-full">
-            <div className="w-[20%]">
-                <SidebarComponent/>
-                <WorkspacePopupComponent/>
-            </div>
-            <div className="w-[80%] mx-5">
-                <NavbarComponent/>
-                <ListBoardComponentHeader/>
-            </div>
+            
         </main>
      );
 }

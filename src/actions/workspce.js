@@ -1,23 +1,11 @@
-'use server'
-import { postWorkspace } from "@/app/service/workspaces.service";
+"use server";
+import { deleteWorkspaceService } from "@/app/service/workspace.service";
 import { revalidateTag } from "next/cache";
 
-
-// define handle login
-async function createWorkspace(userInfo) {
-   'use server'
-  // define structure object
-  const newUserInfo = {
-    workspaceName: userInfo.get("workspaceName"),
-  };
-  
-  console.log("newuserinfor",newUserInfo)
-  // call Registerservice
-   await postWorkspace(newUserInfo);
-
-
-  revalidateTag("workspaceName")
-
-
-}
-export default addWorkspace;
+export const getWorkSpaceId = async (id) => {
+  console.log("Id from workspace :", id);
+  const res = await deleteWorkspaceService(id);
+  console.log("res", res);
+  revalidateTag("workspace");
+  return id;
+};

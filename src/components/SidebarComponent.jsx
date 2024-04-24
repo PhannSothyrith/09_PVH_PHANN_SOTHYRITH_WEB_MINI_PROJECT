@@ -3,6 +3,7 @@ import React from "react";
 import EditDeleteDropDownComponent from "./EditDeleteDropDownComponent";
 import WorkspacePopupComponent from "./WorkspacePopupComponent";
 import { getAllWorkSpaceService } from "@/app/service/workspace.service";
+import Link from "next/link";
 
 export default async function SidebarComponent() {
   const workspaceData = await getAllWorkSpaceService();
@@ -21,10 +22,18 @@ export default async function SidebarComponent() {
       </div>
       {workspaceData?.data?.map((data) => (
         <div key={data?.workSpaceId} className="flex items-center mt-5 w-full">
-          <div className={data?.workSpaceId % 2 == 0 ? "rounded-full w-4 h-4 bg-green-500 " : "rounded-full w-4 h-4 bg-blue-500 " }></div>
+          <div
+            className={
+              data?.workSpaceId % 2 == 0
+                ? "rounded-full w-4 h-4 bg-green-500 "
+                : "rounded-full w-4 h-4 bg-blue-500 "
+            }
+          ></div>
           <div className="flex justify-between w-full pl-3">
-            <p>{data?.workspaceName}</p>
-            <EditDeleteDropDownComponent />
+            <Link href={`/todo-list/${data?.workspaceName}`}>
+              <p>{data?.workspaceName}</p>
+            </Link>
+            <EditDeleteDropDownComponent workSpaceId={data.workSpaceId} />
           </div>
         </div>
       ))}
